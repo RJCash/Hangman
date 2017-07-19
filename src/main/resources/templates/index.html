@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8"/>
+  <title>Your page title here :)</title>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css"/>
+  <link rel="stylesheet" href="css/skeleton.css"/>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+
+<div class="container">
+<h4>Hangman the Game</h4>
+</div>
+
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="one-half column" style="margin-top: 25%">
+        <h4>Question Template</h4>
+        <table>
+          <div class="underscore" th:each="i : ${char}">
+              <br/>
+              <p style="display:none" class="guess" th:text="${i}"></p>
+              <p th:text="__"></p>
+          </div>
+        </table>
+        <input id="testInput" type="text"> Enter a Letter or the Word</input>
+      	<h4 id="show"></h4>
+        <button id="mainButton">Enter Letter</button>
+        <button id="guessButton">Guess Word</button>
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+<script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function () {
+
+        document.getElementById('mainButton').onclick = function () {
+            var s = document.getElementById("testInput").value;
+            var panels = document.getElementsByClassName('guess');
+            var array = [].slice.call(panels);
+            var charExist = false;
+            var win = true;
+            for (var x = 0; x < array.length; x++) {
+                if(array[x].innerText.toLowerCase() === s.toLowerCase()){
+                    alert("that char exists");
+                    charExist = true;
+                    array[x].style.display = "block";
+                }
+            }
+            for(var x = 0; x < array.length; x++){
+                console.log(array[x].style.display);
+                if(array[x].style.display != "block"){
+                    win = false;
+                }
+            }
+            if(win === true){
+                alert("You win");
+            }
+            if(charExist === false && win === false){
+                alert("That character does not exist");
+            }
+        }
+        document.getElementById('guessButton').onclick = function(){
+
+        }
+    })
+//]]>
+</script>
+
+</html>

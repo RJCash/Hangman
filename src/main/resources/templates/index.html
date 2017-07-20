@@ -51,7 +51,7 @@
         <input id="testInput" type="text"> Enter a Letter or the Word</input>
       	<h4 id="show"></h4>
         <button id="mainButton">Enter Letter</button>
-        <button id="guessButton">Guess Word</button>
+        <button id="guessWordButton">Guess Word</button>
       </div>
     </div>
   </div>
@@ -89,7 +89,25 @@
                 alert("That character does not exist");
             }
         }
-        document.getElementById('guessButton').onclick = function(){
+        document.getElementById('guessWordButton').onclick = function() {
+            var win = true;
+            var s = document.getElementById("testInput").value;
+            var inputArray = s.split("");
+            var panels = document.getElementsByClassName('guess');
+            var array = [].slice.call(panels);
+
+            for (var x = 0; x < array.length; x++) {
+                if (array[x].innerText.toLowerCase() !== inputArray[x].toLowerCase()) {
+                    win === false;
+                }
+            }
+            if (win === true && inputArray.length <= array.length ) {
+                alert("You guessed the word, you win!");
+                for(var x = 0; x < array.length; x++){
+                    array[x].style.display = "block"
+                }
+            }else
+                alert("You guessed the wrong word");
 
         }
     })

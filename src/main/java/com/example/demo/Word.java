@@ -8,6 +8,20 @@ public class Word {
     Integer id;
     String theme;
 
+    public Word(Integer id,String word,String theme){
+        this.id = id;
+        this.word = word;
+        this.theme = theme;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
     public void setWord(String word) {
         this.word = word;
     }
@@ -24,10 +38,7 @@ public class Word {
         return word;
     }
 
-    public Word(Integer id,String word){
-        this.id = id;
-        this.word = word;
-    }
+
     public Word(){
 
     }

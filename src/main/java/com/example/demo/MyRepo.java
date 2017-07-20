@@ -23,8 +23,8 @@ public class MyRepo {
                 new Object[]{id},
                 (ResultSet,row) -> new Word(
                         ResultSet.getInt("id"),
-                        ResultSet.getString("first")
-
+                        ResultSet.getString("first"),
+                        ResultSet.getString("theme")
                 ));
 
     }

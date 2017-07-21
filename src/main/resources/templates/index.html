@@ -98,10 +98,10 @@
 
             for (var x = 0; x < array.length; x++) {
                 if (array[x].innerText.toLowerCase() !== inputArray[x].toLowerCase()) {
-                    win === false;
+                    win = false;
                 }
             }
-            if (win === true && inputArray.length <= array.length ) {
+            if (win && inputArray.length <= array.length ) {
                 alert("You guessed the word, you win!");
                 for(var x = 0; x < array.length; x++){
                     array[x].style.display = "block"

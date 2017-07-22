@@ -52,6 +52,7 @@
       	<h4 id="show"></h4>
         <button id="mainButton">Enter Letter</button>
         <button id="guessWordButton">Guess Word</button>
+        <button style="display:none" id="anotherWordButton">Try Again?</button>
       </div>
     </div>
   </div>
@@ -84,6 +85,7 @@
             }
             if(win === true){
                 alert("You win");
+                document.getElementById('anotherWordButton').style.display = "block";
             }
             if(charExist === false && win === false){
                 alert("That character does not exist");
@@ -104,11 +106,14 @@
             if (win && inputArray.length <= array.length ) {
                 alert("You guessed the word, you win!");
                 for(var x = 0; x < array.length; x++){
-                    array[x].style.display = "block"
+                    array[x].style.display = "block";
                 }
+                document.getElementById('anotherWordButton').style.display = "block";
             }else
                 alert("You guessed the wrong word");
-
+        }
+        document.getElementById('anotherWordButton').onclick = function() {
+            window.location.reload();
         }
     })
 //]]>

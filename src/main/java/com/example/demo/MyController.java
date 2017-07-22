@@ -19,15 +19,15 @@ public class MyController {
 
     @RequestMapping("/")
     public String home(Model model){
-        Integer id = rand.nextInt(4)+1;
+        Integer id = rand.nextInt(8)+1;
         if(id != null) {
             model.addAttribute("word", repo.getWordbyId(id).getWord());
             model.addAttribute("theme", repo.getWordbyId(id).getTheme());
             model.addAttribute("characters", repo.getWordbyId(id).getwordCount());
             ArrayList<String> characters = new ArrayList<>();
             for (int i = 0; i < repo.getWordbyId(id).getWord().length(); i++) {
-                char charcter = repo.getWordbyId(id).getWord().charAt(i);
-                characters.add(Character.toString(charcter));
+                char character = repo.getWordbyId(id).getWord().charAt(i);
+                characters.add(Character.toString(character));
             }
             
             model.addAttribute("char",characters);

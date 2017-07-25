@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8"/>
-  <title>Your page title here :)</title>
+  <title>Hangman</title>
   <meta name="description" content=""/>
   <meta name="author" content=""/>
 
@@ -31,7 +31,9 @@
 
 <div class="container">
 <h4>Hangman the Game</h4>
+  <img id="img" src="../static/images/hangmanHead.png" th:src="@{/images/hangmanHead.png}"/>
 </div>
+
 
 <body>
 
@@ -50,8 +52,8 @@
         </table>
         <input id="testInput" type="text"> Enter a Letter or the Word</input>
       	<h4 id="show"></h4>
-        <button id="mainButton">Enter Letter</button>
-        <button id="guessWordButton">Guess Word</button>
+        <button style="display:inline-block" id="mainButton">Enter Letter</button>
+        <button style="display:inline-block" id="guessWordButton">Guess Word</button>
         <button style="display:none" id="anotherWordButton">Try Again?</button>
       </div>
     </div>
@@ -60,16 +62,20 @@
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     //<![CDATA[
     $(document).ready(function () {
-
+        var miss = 0;
+        //Function for mainButton
         document.getElementById('mainButton').onclick = function () {
+
             var s = document.getElementById("testInput").value;
             var panels = document.getElementsByClassName('guess');
+            //convert nodelist to array
             var array = [].slice.call(panels);
             var charExist = false;
             var win = true;
+            //compare input character and array and display character
             for (var x = 0; x < array.length; x++) {
                 if(array[x].innerText.toLowerCase() === s.toLowerCase()){
                     alert("that char exists");
@@ -77,6 +83,7 @@
                     array[x].style.display = "block";
                 }
             }
+            //Win condition is met if all array items are shown
             for(var x = 0; x < array.length; x++){
                 console.log(array[x].style.display);
                 if(array[x].style.display != "block"){
@@ -86,35 +93,83 @@
             if(win === true){
                 alert("You win");
                 document.getElementById('anotherWordButton').style.display = "block";
-            }
+            }else
             if(charExist === false && win === false){
                 alert("That character does not exist");
+                miss++;
+                console.log(miss);
+            }
+            if(miss === 1){
+                document.getElementById('img').src = /*[[@{/images/hangmanTorso.png}]]*/ 'name';
+            }else
+            if(miss === 2){
+                document.getElementById('img').src = /*[[@{/images/hangmanHands3.png}]]*/ 'name';
+            }else
+            if(miss === 3){
+                document.getElementById('img').src = /*[[@{/images/hangmanFeet4.png}]]*/ 'name';
+            }else
+            if(miss === 4){
+                document.getElementById('img').src = /*[[@{/images/hangmanFace5.png}]]*/ 'name';
+            }else
+            if(miss === 5){
+                document.getElementById('img').src = /*[[@{/images/hangmanLose6.png}]]*/ 'name';
+                alert("You Lose");
+                document.getElementById('mainButton').style.display= "none";
+                document.getElementById('guessWordButton').style.display= "none";
+                document.getElementById('anotherWordButton').style.display = "block";
             }
         }
         document.getElementById('guessWordButton').onclick = function() {
             var win = true;
             var s = document.getElementById("testInput").value;
+            //convert the input word into a array of characters
             var inputArray = s.split("");
             var panels = document.getElementsByClassName('guess');
             var array = [].slice.call(panels);
-
+            //check each inputArray item with each answer character
             for (var x = 0; x < array.length; x++) {
                 if (array[x].innerText.toLowerCase() !== inputArray[x].toLowerCase()) {
                     win = false;
                 }
             }
+            //check win condition
             if (win && inputArray.length <= array.length ) {
                 alert("You guessed the word, you win!");
                 for(var x = 0; x < array.length; x++){
                     array[x].style.display = "block";
                 }
                 document.getElementById('anotherWordButton').style.display = "block";
-            }else
+            }else{
                 alert("You guessed the wrong word");
+                miss++;
+            }
+            if(miss === 1){
+                document.getElementById('img').src = /*[[@{/images/hangmanTorso.png}]]*/ 'name';
+            }else
+            if(miss === 2){
+                document.getElementById('img').src = /*[[@{/images/hangmanHands3.png}]]*/ 'name';
+            }else
+            if(miss === 3){
+                document.getElementById('img').src = /*[[@{/images/hangmanFeet4.png}]]*/ 'name';
+            }else
+            if(miss === 4){
+                document.getElementById('img').src = /*[[@{/images/hangmanFace5.png}]]*/ 'name';
+            }else
+            if(miss === 5){
+                document.getElementById('img').src = /*[[@{/images/hangmanLose6.png}]]*/ 'name';
+                alert("You Lose");
+                document.getElementById('mainButton').style.display= "none";
+                document.getElementById('guessWordButton').style.display= "none";
+                document.getElementById('anotherWordButton').style.display = "block";
+            }
+
         }
+        //try again button
         document.getElementById('anotherWordButton').onclick = function() {
             window.location.reload();
         }
+
+
     })
 //]]>
 </script>

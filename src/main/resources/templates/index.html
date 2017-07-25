@@ -31,7 +31,6 @@
 
 <div class="container">
 <h4>Hangman the Game</h4>
-  <img id="img" src="../static/images/hangmanHead.png" th:src="@{/images/hangmanHead.png}"/>
 </div>
 
 
@@ -41,8 +40,9 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4 th:text="${theme}">Question Template</h4>
+      <div class="one-half column" style="margin-top: 0%">
+        <img id="img" src="../static/images/hangmanHead.png" th:src="@{/images/hangmanHead.png}"/>
+        <h4 th:text="${theme}">Theme Template</h4>
         <table>
           <div class="underscore" th:each="i : ${char}">
               <br/>

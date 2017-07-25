@@ -13,34 +13,26 @@ public class Word {
         this.word = word;
         this.theme = theme;
     }
+    public Word(){
 
+    }
     public String getTheme() {
         return theme;
     }
-
     public void setTheme(String theme) {
         this.theme = theme;
     }
-
     public void setWord(String word) {
         this.word = word;
     }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getWord() {
         return word;
-    }
-
-
-    public Word(){
-
     }
     public int getwordCount(){
      return this.wordCount = this.word.length();

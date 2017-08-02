@@ -78,7 +78,7 @@
             //compare input character and array and display character
             for (var x = 0; x < array.length; x++) {
                 if(array[x].innerText.toLowerCase() === s.toLowerCase()){
-                    alert("that char exists");
+                    alert("That character exists");
                     charExist = true;
                     array[x].style.display = "block";
                 }
@@ -128,12 +128,18 @@
             var array = [].slice.call(panels);
             //check each inputArray item with each answer character
             for (var x = 0; x < array.length; x++) {
+                console.log(inputArray[x]);
+                console.log(array[x].innerText);
+                if(array[x] === undefined || inputArray[x] === undefined){
+                    win = false;
+                    break;
+                }
                 if (array[x].innerText.toLowerCase() !== inputArray[x].toLowerCase()) {
                     win = false;
                 }
             }
             //check win condition
-            if (win && inputArray.length <= array.length ) {
+            if (win && inputArray.length == array.length ) {
                 alert("You guessed the word, you win!");
                 for(var x = 0; x < array.length; x++){
                     array[x].style.display = "block";
@@ -143,6 +149,7 @@
                 alert("You guessed the wrong word");
                 miss++;
             }
+
             if(miss === 1){
                 document.getElementById('img').src = /*[[@{/images/hangmanTorso.png}]]*/ 'name';
             }else

@@ -19,7 +19,7 @@ public class MyController {
 
     @RequestMapping("/")
     public String home(Model model){
-        Integer id = rand.nextInt(8)+1;
+        Integer id = rand.nextInt(12)+1;
         if(id != null) {
             model.addAttribute("word", repo.getWordbyId(id).getWord());
             model.addAttribute("theme", repo.getWordbyId(id).getTheme());
